@@ -3,6 +3,7 @@
  * 文件处理，以处理package.json文件为例
  */
 const fs=require('fs');
+const path=require('path');
 /**
  *  修改版本号
  *  @params   
@@ -24,4 +25,25 @@ const editDependencies=function({key,value,filepath,type}){
     fs.writeFileSync(filepath,JSON.stringify(currFileObj));
     console.log('写入成功！')
 }
-editDependencies({key:"axios",value:"^0.18.0",filepath:'./package.json'})
+/**
+ * 遍历指定目录下的所有文件
+ * @param {*} dir 
+ */
+const getAllFile=function(dir){
+    let res=[]
+    function traverse(dir){
+        fs.readdirSync(dir).forEach((file)=>{
+            const pathname=path.join(dir,file)
+            if(fs.statSync(pathname).isDirectory()){
+                traverse(pathname)
+            }else{
+                res.push(pathname)
+            }
+        })
+    }
+    traverse(dir)
+    return res;
+}
+
+// editDependencies({key:"axios",value:"^0.18.0",filepath:'./package.json'})
+const res=getAllFile('src')
