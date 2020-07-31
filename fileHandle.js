@@ -46,4 +46,4 @@ const getAllFile=function(dir){
 }
 
 // editDependencies({key:"axios",value:"^0.18.0",filepath:'./package.json'})
-const res=getAllFile('src')
+const res=getAllFile('mod')
