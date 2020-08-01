@@ -1,7 +1,7 @@
 const fs = require('fs')
 const Excel = require('exceljs');
 
-//输入 src dst：json目录下存放目标文件 json2excel.json
+//输入 src dst：json目录下存放目标文件 json2excel.json -> json2excel.xlsx
 // src：读取的json文件目录
 // dst：导出的excel文件目录
  const json2excel = async function(src,dst){
